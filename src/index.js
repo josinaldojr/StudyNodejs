@@ -32,7 +32,7 @@ const server = http.createServer((request, response) => {
       response.end(JSON.stringify(body))
     }
 
-    if(['POST', 'PUT', 'PATCH'].includes(request.method)) {
+    if(request.method === 'POST' || request.method === 'PUT') {
       bodyParser(request, () => route.handler(request, response));
     } else {
       route.handler(request, response);
